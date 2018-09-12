@@ -1,0 +1,34 @@
+{
+  "name": "jjparse",
+  "version": "0.0.1",
+  "description": "Javascript JSON Parser",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build && node dist/index.js testJSON/correct.json.in testJSON/correct.json.out",
+    "test": "npm run build && jest dist",
+    "build": "./node_modules/.bin/flow-remove-types src/ -d dist/",
+    "flow": "npm run flow"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/peterheesterman/jjparse.git"
+  },
+  "keywords": [
+    "JSON",
+    "Javascript",
+    "Parser",
+    "AST"
+  ],
+  "author": "Peter Heesterman",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/peterheesterman/jjparse#readme",
+  "devDependencies": {
+    "flow-bin": "^0.80.0",
+    "flow-remove-types": "^1.2.3",
+    "jest": "^23.5.0"
+  },
+  "dependencies": {
+    "flow-typed": "^2.5.1",
+    "ramda": "^0.25.0"
+  }
+}
