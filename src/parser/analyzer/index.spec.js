@@ -9,5 +9,9 @@ test('Analyzer should produce a tree', () => {
     { type: 'brace_close', start: 1, end: 1, value: '}' }
   ]
 
-  expect(analyzer(emptyObject)).toEqual(null)
+  expect(analyzer(emptyObject)).toEqual({
+    root: {
+      type: 'object'
+    }
+  })
 })

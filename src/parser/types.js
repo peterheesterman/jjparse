@@ -12,7 +12,7 @@ type TreeNode = {|
 |}
 
 type AST = {|
-  root: TreeNode
+  root: ?TreeNode
 |}
 
 export type {

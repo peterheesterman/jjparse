@@ -4,7 +4,7 @@ const { compose } = require('ramda')
 
 const { tokenizer } = require('./tokenizer')
 const { analyzer } = require('./analyzer')
-const { formatter } = require('./formatter')
+const { formatter } = require('../formatter')
 
 const transform = compose(
   formatter,

@@ -4,7 +4,7 @@
 import type { Token } from '../../../types'
 import type { CharIterator } from '../charIterator'
 
-const { makeToken } = require('../makeToken')
+const { makeToken } = require('./makeToken')
 const { getValue } = require('../utils/selectors')
 
 type $delimiters = {
