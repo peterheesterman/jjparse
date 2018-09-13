@@ -19,7 +19,38 @@ test('Analyzer should produce a tree', () => {
   })
 })
 
-test.only('Analyzer should Handle arrays and object nested', () => {
+
+test('Analyzer should Handle arrays and object nested', () => {
+  // failing test to pick up from next time
+
+  const nestedArrays = [ 
+    { type: 'square_braket_open', start: 0, end: 0, value: '[' },
+    { type: 'square_braket_open', start: 1, end: 1, value: '[' },
+    { type: 'square_braket_close', start: 2, end: 2, value: ']' },
+    { type: 'comma', start: 3, end: 3, value: ',' },
+    { type: 'square_braket_open', start: 4, end: 4, value: '[' },
+    { type: 'square_braket_close', start: 5, end: 5, value: ']' },
+    { type: 'square_braket_close', start: 6, end: 6, value: ']' } 
+  ]
+
+  expect(analyzer(nestedArrays)).toEqual({
+    "root": {
+      "head": {
+        "type": "array",
+        "values": [{
+          "type": "array",
+          "values": []
+        }, {
+          "type": "array",
+          "values": []
+        }]
+      },
+      "type": "root"
+    }
+  })
+})
+
+test('Analyzer should Handle arrays and object nested', () => {
   // failing test to pick up from next time
 
   const nestedBothArraysAndObjects = [
@@ -31,7 +62,7 @@ test.only('Analyzer should Handle arrays and object nested', () => {
     { type: 'square_braket_close', start: 14, end: 14, value: ']' },
     { type: 'brace_close', start: 15, end: 15, value: '}' } 
   ]
-  
+
   expect(analyzer(nestedBothArraysAndObjects)).toEqual({
     "root": {
       "head": {

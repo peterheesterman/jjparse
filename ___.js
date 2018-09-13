@@ -3,9 +3,10 @@
 
 const { tokenizer } = require('./dist/parser/tokenizer/index')
 
-const json = `{
-	"depth": [true]
-}`
+const json = `[
+	[],
+	[]
+]`
 
 console.log(tokenizer(json))
 
