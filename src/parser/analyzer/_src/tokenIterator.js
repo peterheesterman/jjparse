@@ -7,13 +7,13 @@ type indexedToken = {|
   index: number
 |}
 
-type TokenIterator = Generator<indexedToken, {| value: null, done: boolean|}, void>
+type TokenIterator = Generator<indexedToken, {| value: null, done: boolean|}, boolean>
 
 function* tokenIterator (tokens: Array<Token>): TokenIterator {
   let counter = 0
   while(counter < tokens.length) {
-    yield { token: tokens[counter], index: counter}
-    counter++
+    let wasAPeek = yield { token: tokens[counter], index: counter}
+    if (!wasAPeek) counter++
   }
   return {
     value: null,

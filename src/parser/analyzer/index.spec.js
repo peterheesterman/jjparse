@@ -11,7 +11,11 @@ test('Analyzer should produce a tree', () => {
 
   expect(analyzer(emptyObject)).toEqual({
     root: {
-      type: 'object'
+      type: 'root',
+      head: {
+        type: 'object',
+        object: []
+      } 
     }
   })
 })

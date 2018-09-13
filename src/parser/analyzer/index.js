@@ -1,5 +1,13 @@
 // @flow
-import type { Token, TreeNode, AST } from '../types'
+
+import type {
+  AST, 
+  Token, 
+  TreeNode,
+  TreeNode_array,
+  TreeNode_object
+} from '../types'
+
 import type { TokenIterator } from './_src/tokenIterator'
 
 const {
@@ -17,49 +25,28 @@ const {
 const { tokenIterator } = require('./_src/tokenIterator')
 const { getValue } = require('./_src/utils/selectors')
 
-function recursiveAnalyse(stream: TokenIterator): TreeNode {
-  return {
-    type: 'something'
-  }
-}
+const { processObject } = require('./_src/processObject')
+const { processArray } = require('./_src/processArray')
 
 const analyzer = (tokens: Array<Token>): AST => {
   const tree = {
-    root: null
+    root: {
+      type: 'root',
+      head: {}
+    }
   }
   
-  const stream: TokenIterator = tokenIterator(tokens)
+  const stream = tokenIterator(tokens)
   let currentToken = stream.next()
+
   while(!currentToken.done) {
     const value = getValue(currentToken)
-
     switch (value.token.type) {
       case brace_open:
-
-        break;
-      case brace_close:
-
-        break;
-      case colon:
-
-        break;
-      case comma:
-
+        tree.root.head = processObject(stream)
         break;
       case square_braket_open:
-
-        break;
-      case square_braket_close:
-
-        break;
-      case word:
-
-        break;
-      case _true:
-
-        break;
-      case _false:
-
+        tree.root.head = processArray(stream)
         break;
       default:
         throw new Error(`Char (${value.char}) does not start know token - fail!`)

@@ -1,26 +1,26 @@
 // @flow
 
+import type { AST } from './types'
+
 const { compose } = require('ramda')
 
 const { tokenizer } = require('./tokenizer')
 const { analyzer } = require('./analyzer')
-const { formatter } = require('../formatter')
 
-const transform = compose(
-  formatter,
+const parse = compose(
   analyzer,
   tokenizer
 )
 
 type $output = {|
-  parsedJson: string, 
+  parsedJson: AST, 
   errors: Array<Error>  
 |}
 
 const process = (json: string): $output => {
   const errors = []
   return {
-    parsedJson: transform(json),
+    parsedJson: parse(json),
     errors
   }
 }
