@@ -11,12 +11,29 @@ type TreeNode = {|
   type: string
 |}
 
+type TreeNode_object = {|
+  type: string, 
+  object: Array<Object>
+|}
+
+type TreeNode_array = {|
+  type: string, 
+  values: Array<Object>
+|}
+
+type TreeNode_root = {|
+  type: string,
+  head: Object
+|}
+
 type AST = {|
-  root: TreeNode
+  root: ?TreeNode_root
 |}
 
 export type {
+  AST,
   Token,
   TreeNode,
-  AST
+  TreeNode_array,
+  TreeNode_object
 }

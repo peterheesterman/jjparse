@@ -2,17 +2,17 @@
 
 const { defType } = require('./defType')
 
-const type = 'false'
+const { _false } = require('../../../tokenTypes')
 
 const delimiters = {
   startChar: 'f',
   endChar: 'e'
 }
 
-const makeWord = defType(type, delimiters)
+const makeWord = defType(_false, delimiters)
 
 module.exports = {
   ...delimiters,
   make: makeWord,
-  type
+  type: _false
 }

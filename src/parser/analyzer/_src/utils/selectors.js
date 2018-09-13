@@ -1,3 +1,4 @@
+
 const getValue = (obj) => {
   return obj.value
 }
