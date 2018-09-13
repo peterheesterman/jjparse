@@ -9,3 +9,5 @@ Javascript JSON Parser
 Parsing will include tokenizing and analyzing. The resulting Abstract Syntax
 Tree (AST) will be used to format json.
 
+* Need to add number support to both the tokenizer and analyzer?
+
