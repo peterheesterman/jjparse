@@ -3,15 +3,9 @@
 
 const { tokenizer } = require('./dist/parser/tokenizer/index')
 
-const json = `{
-  "depth": {
-    "so1": {
-      "so2": true 
-    }
-  }
-}`
+const json = `[]`
 
-console.log(tokenizer(json).length)
+console.log(tokenizer(json))
 
 /**
   [ { type: 'brace_open', start: 0, end: 0, value: '{' },

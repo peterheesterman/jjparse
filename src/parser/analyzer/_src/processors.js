@@ -27,8 +27,10 @@ const processArray = (stream: TokenIterator): TreeNode_array => {
 
   if (first !== square_braket_close) {
     do {
-      values.push(stream.next())
+      values.push(processValue(stream))
     } while (stream.next() === comma)
+  } else {
+    stream.next() // Chew up the `]` token
   }
   
   return makeArray(values)
