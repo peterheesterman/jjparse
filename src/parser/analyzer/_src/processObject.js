@@ -22,25 +22,17 @@ const processObject = (stream: TokenIterator): TreeNode_object => {
   const pairs = []
   const makeObject = (keyVals) => ({ type: 'object', object: keyVals})
 
-  /* Leaving this here to clear first brace
-     this is a lot less work than modifying the iterator for handling if you peek
-     right at the end
-   */
-  stream.next() 
-
-  const first = getValue(stream.next(JUST_PEEK)).token.type
-  console.log(first)
-
+  const first = getValue(stream.next(true)).token.type
   if (first !== brace_close) {
     do {
       const key = getValue(stream.next())
-  console.log(key)
-
       stream.next() // Skip colon
       const value = getValue(stream.next())
       pairs.push({key, value})
-    } while (stream.next() === comma)
-  } 
+    } while (getValue(stream.next()).token.type === comma)
+  } else {
+    stream.next() // Chew up the `}` token
+  }
   
   return makeObject(pairs)
 }
