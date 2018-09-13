@@ -4,11 +4,14 @@
 const { tokenizer } = require('./dist/parser/tokenizer/index')
 
 const json = `{
-  "win": "yes",
-  "ok": true
+  "depth": {
+    "so1": {
+      "so2": true 
+    }
+  }
 }`
 
-console.log(tokenizer(json))
+console.log(tokenizer(json).length)
 
 /**
   [ { type: 'brace_open', start: 0, end: 0, value: '{' },

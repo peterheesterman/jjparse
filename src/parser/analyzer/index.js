@@ -25,8 +25,7 @@ const {
 const { tokenIterator } = require('./_src/tokenIterator')
 const { getValue } = require('./_src/utils/selectors')
 
-const { processObject } = require('./_src/processObject')
-const { processArray } = require('./_src/processArray')
+const { processObject, processArray } = require('./_src/processors')
 
 const analyzer = (tokens: Array<Token>): AST => {
   const tree = {
@@ -49,7 +48,7 @@ const analyzer = (tokens: Array<Token>): AST => {
         tree.root.head = processArray(stream)
         break;
       default:
-        throw new Error(`Char (${value.char}) does not start know token - fail!`)
+        throw new Error(`Token (${value.token.type}) does not start a know type - fail!`)
     }
 
     currentToken = stream.next()

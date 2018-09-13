@@ -58,3 +58,60 @@ test('Analyzer should produce a tree for depth 1 objects', () => {
     }
   })
 })
+
+
+test('Analyzer should produce a tree for depth 3 objects', () => {
+  // failing test to pick up from next time
+  /**
+   * {
+   *   "depth": {
+   *     "so1": {
+   *       "so2": true 
+   *     }
+   *   }
+   * }
+   */
+  const nestedObjectJSON = [ 
+    { type: 'brace_open', start: 0, end: 0, value: '{' },   // 0
+    { type: 'word', start: 1, end: 7, value: '"depth"' },
+    { type: 'colon', start: 8, end: 8, value: ':' },
+    { type: 'brace_open', start: 9, end: 9, value: '{' },
+    { type: 'word', start: 10, end: 14, value: '"so1"' },
+    { type: 'colon', start: 15, end: 15, value: ':' },      // 5
+    { type: 'brace_open', start: 16, end: 16, value: '{' },
+    { type: 'word', start: 17, end: 21, value: '"so2"' },
+    { type: 'colon', start: 22, end: 22, value: ':' },
+    { type: 'true', start: 23, end: 26, value: 'true' },
+    { type: 'brace_close', start: 27, end: 27, value: '}' },// 10
+    { type: 'brace_close', start: 28, end: 28, value: '}' },
+    { type: 'brace_close', start: 29, end: 29, value: '}' } 
+  ] // 13
+
+  expect(analyzer(nestedObjectJSON)).toEqual({
+    root: {
+      type: 'root',
+      head: {
+        type: 'object',
+        object: [
+        {
+          key: { token: { type: 'word', start: 1, end: 7, value: '"depth"' }, index: 1 },
+          value: {
+            type: 'object',
+            object: [
+            {
+              key: { token: { type: 'word', start: 10, end: 14, value: '"so1"' }, index: 4 },
+              value: {
+                type: 'object',
+                object: [
+                {
+                  key: { token: { type: 'word', start: 17, end: 21, value: '"so2"' }, index: 7 },
+                  value: { token: { type: 'true', start: 23, end: 26, value: 'true' }, index: 9 }
+                }]
+              } 
+            }]
+          } 
+        }]
+      } 
+    }
+  })
+})
