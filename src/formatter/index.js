@@ -19,7 +19,6 @@ const writeObject = (write, node, addDepth, depth, startOnNewLine = true) => {
   node.object.forEach(keyVal => {
     const newDepth = depth + 1
     addDepth(newDepth)
-    // Note the space on the end - this get the layout for ': {' correct - not sure what the best way to handle this is that the momnet
     write(keyVal.key.token.value + ': ')
 
     switch (keyVal.value.type) {
@@ -33,7 +32,7 @@ const writeObject = (write, node, addDepth, depth, startOnNewLine = true) => {
         write(keyVal.value.token.value)
         break;
     }
-    write(',')
+    if (node.object[node.object.length - 1] !== keyVal) write(',') 
   })
 
   addDepth(depth)
@@ -58,7 +57,7 @@ const writeArray = (write, node, addDepth, depth, startOnNewLine = false) => {
       break;
     }
     
-    write(',')
+    if (node.values[node.values.length - 1] !== keyVal) write(',')
   })
 
   addDepth(depth)
