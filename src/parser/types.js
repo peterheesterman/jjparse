@@ -27,7 +27,7 @@ type TreeNode_root = {|
 |}
 
 type AST = {|
-  root: ?TreeNode_root
+  root: Object
 |}
 
 export type {

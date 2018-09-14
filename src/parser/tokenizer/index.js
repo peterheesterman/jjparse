@@ -22,6 +22,11 @@ const tokenizer = (input: string): Array<Token> => {
     const value = getValue(currentChar)
 
     switch (value.char) {
+      case " ":
+      case "\t":
+      case "\n":
+      case "\r":
+        break;
       case startWord:
         tokens.push(makeWord(stream))
         break;
