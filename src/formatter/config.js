@@ -1,4 +1,4 @@
 
 module.exports = {
-  spaces: 2
+  spaces: 4
 }

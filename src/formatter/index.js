@@ -33,7 +33,7 @@ const writeObject = (write, node, addDepth, depth, startOnNewLine = true) => {
         write(keyVal.value.token.value)
         break;
     }
-
+    write(',')
   })
 
   addDepth(depth)
