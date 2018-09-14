@@ -9,12 +9,40 @@ const strBuffer = (str) => (additionStr) => {
   return str
 }
 
-const depthHandler = (writer: func): func => (depth: number) => {
-  writer(" ".repeat(spaces * depth))
+const depthHandler = (write) => (depth) => {
+  write("\n"+" ".repeat(spaces * depth))
 }
 
-const writeObject = (writer, node, depthHandler, depth) => {
+const writeObject = (write, node, addDepth, depth, startOnNewLine = true) => {
+  if (startOnNewLine) addDepth(depth)
+  write('{')
+  node.object.forEach(keyVal => {
+    const newDepth = depth + 1
+    addDepth(newDepth)
+    // Note the space on the end - this get the layout for ': {' correct - not sure what the best way to handle this is that the momnet
+    write(keyVal.key.token.value + ': ')
+
+    switch (keyVal.value.type) {
+      case 'object':
+        writeObject(write, keyVal.value, addDepth, newDepth, false)
+        break;
+      case 'array':
+        writeArray(write, keyVal.value, addDepth, newDepth, false)
+        break;
+      default:
+        write(keyVal.value.token.value)
+        break;
+    }
+
+  })
+
+  addDepth(depth)
+  write('}')
+}
+
+const writeArray = (write, node, addDepth, depth, startOnNewLine = false) => {
   depthHandler(depth)
+  write('array')
 }
 
 const getHead = (tree: AST): Object => {
@@ -29,16 +57,16 @@ const formatter = (tree: AST): string => {
 
   switch (head.type) {
     case 'object':
-      writeObject(write, head, depthHandler, 0)
+      writeObject(write, head, addDepth, 0, false)
       break;
     case 'array':
-      
+      writeArray(write, head, addDepth, 0, false)
       break;
     default:
-      break;
+      throw new Error('We are not in an array or object - something is wrong')
   }
 
-  return "formatted json"
+  return write('')
 }
 
 module.exports = {

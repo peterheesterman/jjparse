@@ -61,6 +61,8 @@ const processObject = (stream: TokenIterator): TreeNode_object => {
   if (first !== brace_close) {
     do {
       const key = getValue(stream.next())
+      delete key.token.start
+      delete key.token.end
       stream.next() // Skip colon
       const value = processValue(stream)
       pairs.push({key, value})
