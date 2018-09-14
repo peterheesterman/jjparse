@@ -8,7 +8,7 @@ type indexedChar = {|
 type CharIterator = Generator<indexedChar, {| value: null, done: boolean|}, void>
 
 function* charIterator (input: string): CharIterator {
-  const chars = input.replace(/\s/gi, '')
+  const chars = input//.replace(/\s/gi, '')
   let counter = 0
   while(counter < chars.length) {
     yield { char: chars[counter], index: counter}

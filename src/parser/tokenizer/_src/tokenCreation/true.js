@@ -9,7 +9,7 @@ const delimiters = {
   endChar: 'e'
 }
 
-const makeWord = defType(_true, delimiters)
+const makeWord = defType(_true, delimiters, _true)
 
 module.exports = {
   ...delimiters,

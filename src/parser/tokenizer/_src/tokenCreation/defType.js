@@ -12,16 +12,21 @@ type $delimiters = {
   endChar: string
 }
 
-const defType = (type: string, delimiters: $delimiters) => (
+const anything = '#$*(ANYTHING!)*$#'
+
+const defType = (type: string, delimiters: $delimiters, allowedChars: string = anything) => (
   stream: CharIterator
 ): Token => {
   const chars = [delimiters.startChar]
 
-  let foundEndOfWord = false
   let value = getValue(stream.next())
   const startPos = value.index - 1
+  
+  let foundEndOfWord = false
   while (!foundEndOfWord) {
     const char = value.char
+    if (allowedChars !== anything && !allowedChars.includes(char)) 
+      throw new Error(`(${char}) is not allowed in type ${type}`)
     if (char !== delimiters.endChar) {
       chars.push(char)
       value = getValue(stream.next())

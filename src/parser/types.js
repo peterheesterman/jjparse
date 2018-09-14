@@ -2,8 +2,8 @@
 
 type Token = {|
   type: string,
-  start: number,
-  end: number,
+  start?: number,
+  end?: number,
   value: string
 |}
 
@@ -27,7 +27,7 @@ type TreeNode_root = {|
 |}
 
 type AST = {|
-  root: ?TreeNode_root
+  root: Object
 |}
 
 export type {

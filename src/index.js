@@ -1,5 +1,4 @@
 // @flow
-
 const fs = require('fs')
 
 const parser = require('./parser')
