@@ -1,4 +1,5 @@
 
 module.exports = {
-  spaces: 4
+  tabs: false,
+  spaces: 2
 }

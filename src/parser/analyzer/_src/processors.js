@@ -40,6 +40,7 @@ const processArray = (stream: TokenIterator): TreeNode_array => {
 const processValue = (stream: TokenIterator): TreeNode_array | TreeNode_object => {
   const value = getValue(stream.next())
   switch (value.token.type) {
+
     case brace_open:
       return processObject(stream)
     case square_braket_open:

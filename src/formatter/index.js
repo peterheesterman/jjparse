@@ -2,7 +2,7 @@
 
 import type { AST } from '../parser/types'
 
-const { spaces } = require('./config')
+const { spaces, tabs } = require('./config')
 
 const strBuffer = (str: string) => (additionStr: string): string => {
   str = str.concat(additionStr)
@@ -10,7 +10,11 @@ const strBuffer = (str: string) => (additionStr: string): string => {
 }
 
 const depthHandler = (write: (x: string) => string) => (depth: number): void => {
-  write("\n"+" ".repeat(spaces * depth))
+  let whitespace = '\n' + ' '.repeat(spaces * depth)
+  if (tabs) {
+    whitespace = '\n' + '\t'.repeat(depth)
+  }
+  write(whitespace)
 }
 
 const writeObject = (write, node, addDepth, depth, startOnNewLine = true) => {
