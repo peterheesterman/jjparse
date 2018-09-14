@@ -4,12 +4,12 @@ import type { AST } from '../parser/types'
 
 const { spaces } = require('./config')
 
-const strBuffer = (str) => (additionStr) => {
+const strBuffer = (str: string) => (additionStr: string): string => {
   str = str.concat(additionStr)
   return str
 }
 
-const depthHandler = (write) => (depth) => {
+const depthHandler = (write: (x: string) => string) => (depth: number): void => {
   write("\n"+" ".repeat(spaces * depth))
 }
 
@@ -41,8 +41,28 @@ const writeObject = (write, node, addDepth, depth, startOnNewLine = true) => {
 }
 
 const writeArray = (write, node, addDepth, depth, startOnNewLine = false) => {
-  depthHandler(depth)
-  write('array')
+  if (startOnNewLine) addDepth(depth)
+  write('[')
+  node.values.forEach(keyVal => {
+    const newDepth = depth + 1
+    addDepth(newDepth)
+    switch (keyVal.type) {
+      case 'object':
+      writeObject(write, keyVal, addDepth, newDepth, false)
+      break;
+      case 'array':
+      writeArray(write, keyVal, addDepth, newDepth, false)
+      break;
+      default:
+        write(keyVal.token.value)
+      break;
+    }
+    
+    write(',')
+  })
+
+  addDepth(depth)
+  write(']')
 }
 
 const getHead = (tree: AST): Object => {
