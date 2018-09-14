@@ -45,6 +45,8 @@ const processValue = (stream: TokenIterator): TreeNode_array | TreeNode_object =
     case square_braket_open:
       return processArray(stream)
     default:
+      delete value.end
+      delete value.start
       return value
   }
 }

@@ -9,7 +9,7 @@ const strBuffer = (str) => (additionStr) => {
   return str
 }
 
-const depthHandler = (writer) => (depth) => {
+const depthHandler = (writer: func): func => (depth: number) => {
   writer(" ".repeat(spaces * depth))
 }
 

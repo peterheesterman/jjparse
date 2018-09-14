@@ -92,8 +92,6 @@ test('Tokenizer integration test', () => {
         }
     }
 }`
-const winner = tokenizer(input)
-console.log(winner)
   expect(tokenizer(input)).toEqual(tokens)
 })
 
