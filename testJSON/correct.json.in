@@ -1,8 +1,4 @@
-{
-    "glossary": {
-        "title": "example glossary",
-        "GlossDiv": {
-            "title": "S",
+{ "glossary": { "title": "example glossary","GlossDiv": {"title": "S",
             "GlossList": {
                 "GlossEntry": {
                
@@ -17,7 +13,32 @@
                     "Abbrev": "ISO 8879:1986",
 
 
-                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     "GlossSeeAlso": [
                         {
                             "para": "A meta-markup language, used to create markup languages such as DocBook.",

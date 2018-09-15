@@ -1,4 +1,4 @@
-
+// @flow
 
 type Configuration = {|
   tabs?: boolean,
