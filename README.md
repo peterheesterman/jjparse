@@ -21,4 +21,5 @@ Weak design:
 
 
 ## Would be nice to add:
+Easy:
   - minimising with a config variable for `compression` 

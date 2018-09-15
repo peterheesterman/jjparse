@@ -3,6 +3,7 @@
 const { tokenizer } = require('./')
 
 const word = `"wo rd"`
+const number = `23.123e23`
 const _null = `null`
 const _true = `true`
 const _false = `false`
@@ -15,6 +16,26 @@ test('Tokenizer should make a word', () => {
     value: `"wo rd"`
   }
   expect(tokenizer(word)[0]).toEqual(node)
+})
+
+test('Tokenizer should make a number', () => {
+  const node = {
+    type: "number",
+    start: 0,
+    end: 8,
+    value: `23.123e23`
+  }
+  expect(tokenizer(number)[0]).toEqual(node)
+})
+
+test('Tokenizer should make a number and not take the next char', () => {
+  const node = {
+    type: "number",
+    start: 0,
+    end: 8,
+    value: `23.123e23`
+  }
+  expect(tokenizer(number + '  ')[0]).toEqual(node)
 })
 
 test('Tokenizer should make a null', () => {
