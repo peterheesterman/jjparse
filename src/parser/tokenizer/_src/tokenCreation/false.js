@@ -1,18 +1,15 @@
 // @flow
 
-const { defType } = require('./defType')
+const { defTypeExact } = require('./defTypeExact')
 
 const { _false } = require('../../../tokenTypes')
 
-const delimiters = {
-  startChar: 'f',
-  endChar: 'e'
-}
-
-const makeWord = defType(_false, delimiters, _false)
+const match = 'false'
+const makeFalse = defTypeExact(_false, match)
 
 module.exports = {
-  ...delimiters,
-  make: makeWord,
+  startChar: `f`,
+  match,
+  make: makeFalse,
   type: _false
 }

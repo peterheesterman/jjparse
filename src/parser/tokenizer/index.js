@@ -6,6 +6,7 @@ import type { CharIterator } from './_src/charIterator'
 const { charIterator } = require('./_src/charIterator')
 const { makeToken } = require('./_src/tokenCreation/makeToken')
 const { make: makeWord, startChar: startWord } = require('./_src/tokenCreation/word')
+const { make: makeNull, startChar: startNull } = require('./_src/tokenCreation/null')
 const { make: makeTrue, startChar: startTrue } = require('./_src/tokenCreation/true')
 const { make: makeFalse, startChar: startFalse } = require('./_src/tokenCreation/false')
 
@@ -29,6 +30,9 @@ const tokenizer = (input: string): Array<Token> => {
         break;
       case startWord:
         tokens.push(makeWord(stream))
+        break;
+      case startNull:
+        tokens.push(makeNull(stream))
         break;
       case startTrue:
         tokens.push(makeTrue(stream))

@@ -3,6 +3,7 @@
 const { tokenizer } = require('./')
 
 const word = `"wo rd"`
+const _null = `null`
 const _true = `true`
 const _false = `false`
 
@@ -14,6 +15,16 @@ test('Tokenizer should make a word', () => {
     value: `"wo rd"`
   }
   expect(tokenizer(word)[0]).toEqual(node)
+})
+
+test('Tokenizer should make a null', () => {
+  const node = {
+    type: "null",
+    start: 0,
+    end: 3,
+    value: `null`
+  }
+  expect(tokenizer(_null)[0]).toEqual(node)
 })
 
 test('Tokenizer should make a true', () => {
@@ -51,18 +62,32 @@ test('Tokenizer should work for things with spaces in the words', () => {
   ])
 })
 
-test('Tokenizer should throw for a space in true', () => {
+test('Tokenizer should throw for a w in null', () => {
+  const json = `{"win":"y es","ok":nuull`
+  expect(() => {
+    tokenizer(json)}
+  ).toThrow('There is a failed match for type (null)')
+})
+
+test('Tokenizer should throw for spam in true', () => {
   const json = `{"win":"y es","ok":tr*(*ue}`
   expect(() => {
     tokenizer(json)}
-  ).toThrow('(*) is not allowed in type true')
+  ).toThrow('There is a failed match for type (true)')
 })
 
 test('Tokenizer should throw for a space in false', () => {
   const json = `{"win":"y es","ok":fals e}`
   expect(() => {
     tokenizer(json)}
-  ).toThrow('( ) is not allowed in type false')
+  ).toThrow('There is a failed match for type (false)')
+})
+
+test('Tokenizer should throw for double "s" in false', () => {
+  const json = `{"win":"y es","ok":falsse}`
+  expect(() => {
+    tokenizer(json)}
+  ).toThrow('There is a failed match for type (false)')
 })
 
 test('Tokenizer integration test', () => {
