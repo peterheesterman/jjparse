@@ -5,14 +5,21 @@ type indexedChar = {|
   index: number
 |}
 
-type CharIterator = Generator<indexedChar, {| value: null, done: boolean|}, void>
+type CharIterator = Generator<indexedChar, {| value: null, done: boolean|}, Object>
 
 function* charIterator (input: string): CharIterator {
-  const chars = input//.replace(/\s/gi, '')
+  const chars = input
   let counter = 0
   while(counter < chars.length) {
-    yield { char: chars[counter], index: counter}
-    counter++
+    const flags = yield { char: chars[counter], index: counter}
+
+    if (!flags) {
+      counter++
+    } else {
+      if (flags.rewind) {
+        counter--
+      }
+    }
   }
   return {
     value: null,

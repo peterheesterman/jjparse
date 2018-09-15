@@ -9,6 +9,6 @@ module.exports = {
   word: 'word',
   _true: 'true',
   _false: 'false',
-  _null: 'null'
-  // number: 'number' // To be added soon
+  _null: 'null',
+  number: 'number'
 }
