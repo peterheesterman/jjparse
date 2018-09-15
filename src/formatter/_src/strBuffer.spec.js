@@ -2,8 +2,9 @@
 
 const { strBuffer } = require('./strBuffer')
 
-test.skip('The indenter should add nothing when depth is 0', () => {
+test('The strBuffer should just add strings together and return them', () => {
   const writer = strBuffer('')
 
-  
+  writer('first')
+  expect(writer(' second')).toBe('first second')
 })

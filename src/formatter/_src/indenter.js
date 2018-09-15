@@ -3,7 +3,7 @@
 import type { Configuration } from '../types'
 
 const indenter = (config: Configuration, write: (x: string) => string) => (depth: number): string => {
-  const { spaces, tabs } = config
+  const { spaces = 2, tabs } = config
   let whitespace = '\n' + ' '.repeat(spaces * depth)
   if (tabs) {
     whitespace = '\n' + '\t'.repeat(depth)
