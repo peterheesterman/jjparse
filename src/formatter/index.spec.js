@@ -9,7 +9,7 @@ test('Formatter should accept a tree and write it out - integration', () => {
 `{ "glossary": { "title": "example glossary","GlossDiv": {"title": "S","GlossList": {    "GlossEntry": {     "ID": "SGML",
         "SortAs": "SGML",
         "Glos sTerm": "Standard Generalized Markup Language",
-        "Acronym": "SGML",
+        "Acronym": -123e-3,
         "Abbrev": "ISO 8879:1986",
         "GlossSeeAlso": [
             {
@@ -40,7 +40,7 @@ test('Formatter should accept a tree and write it out - integration', () => {
           "ID": "SGML",
           "SortAs": "SGML",
           "Glos sTerm": "Standard Generalized Markup Language",
-          "Acronym": "SGML",
+          "Acronym": -123e-3,
           "Abbrev": "ISO 8879:1986",
           "GlossSeeAlso": [
             {
