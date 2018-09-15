@@ -9,6 +9,9 @@ Javascript JSON Parser
 Parsing will include tokenizing and analyzing. The resulting Abstract Syntax
 Tree (AST) will be used to format json.
 
+##
+ - There is a line counter that we can use to understand how the repo is changing,
+ we want to get this count as low as possible with it still being easy to read
 
 ## Outstanding issues:
 General:
