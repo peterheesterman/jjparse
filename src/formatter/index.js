@@ -12,9 +12,9 @@ const getHead = (tree: AST): Object => {
   return tree.root.head
 }
 
-const formatter = (config: Configuration, tree: AST): string => {
+const formatter = (tree: AST, config?: Configuration): string => {
   const write = strBuffer('')
-  const indent = indenter(config, write)
+  const indent = indenter(config || {}, write)
   
   const head = getHead(tree)
   switch (head.type) {

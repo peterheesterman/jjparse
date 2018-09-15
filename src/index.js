@@ -16,7 +16,7 @@ const json = fs.readFileSync(inputFile, { encoding: 'utf8' })
 const { parsedJson, errors } = parser.process(json)
 
 if ( errors.length === 0 ) {
-  fs.writeFileSync(outputFile, formatter(config, parsedJson))
+  fs.writeFileSync(outputFile, formatter(parsedJson, config))
 } else {
   console.log('We have some errors', errors)
 }
