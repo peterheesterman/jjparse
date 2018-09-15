@@ -1,6 +1,6 @@
 // @flow
 
-const { defType } = require('./defType')
+const { defTypeByDelimiters } = require('./defTypeByDelimiters')
 
 const { word } = require('../../../tokenTypes')
 
@@ -9,7 +9,7 @@ const delimiters = {
   endChar: `"`
 }
 
-const makeWord = defType(word, delimiters)
+const makeWord = defTypeByDelimiters(word, delimiters)
 
 module.exports = {
   ...delimiters,

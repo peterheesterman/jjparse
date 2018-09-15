@@ -1,6 +1,5 @@
 // @flow
 
-
 import type { Token } from '../../../types'
 import type { CharIterator } from '../charIterator'
 
@@ -12,9 +11,7 @@ type $delimiters = {
   endChar: string
 }
 
-const anything = '#$*(ANYTHING!)*$#'
-
-const defType = (type: string, delimiters: $delimiters, allowedChars: string = anything) => (
+const defTypeByDelimiters = (type: string, delimiters: $delimiters) => (
   stream: CharIterator
 ): Token => {
   const chars = [delimiters.startChar]
@@ -25,8 +22,6 @@ const defType = (type: string, delimiters: $delimiters, allowedChars: string = a
   let foundEndOfWord = false
   while (!foundEndOfWord) {
     const char = value.char
-    if (allowedChars !== anything && !allowedChars.includes(char)) 
-      throw new Error(`(${char}) is not allowed in type ${type}`)
     if (char !== delimiters.endChar) {
       chars.push(char)
       value = getValue(stream.next())
@@ -41,5 +36,5 @@ const defType = (type: string, delimiters: $delimiters, allowedChars: string = a
 }
 
 module.exports = {
-  defType
+  defTypeByDelimiters
 }
