@@ -68,6 +68,21 @@ test('Tokenizer should make a false', () => {
   expect(tokenizer(_false)[0]).toEqual(node)
 })
 
+test('Tokenizer should work for things with numbers as values', () => {
+  const json = `{"win":123e23,"ok":true}`
+  expect(tokenizer(json)).toEqual([ 
+    { type: 'brace_open', start: 0, end: 0, value: '{' },
+    { type: 'word', start: 1, end: 5, value: '"win"' },
+    { type: 'colon', start: 6, end: 6, value: ':' },
+    { type: 'number', start: 7, end: 12, value: '123e23' },
+    { type: 'comma', start: 13, end: 13, value: ',' },
+    { type: 'word', start: 14, end: 17, value: '"ok"' },
+    { type: 'colon', start: 18, end: 18, value: ':' },
+    { type: 'true', start: 19, end: 22, value: 'true' },
+    { type: 'brace_close', start: 23, end: 23, value: '}' } 
+  ])
+})
+
 test('Tokenizer should work for things with spaces in the words', () => {
   const json = `{"win":"y es","ok":true}`
   expect(tokenizer(json)).toEqual([ 
@@ -95,6 +110,20 @@ test('Tokenizer should throw for spam in true', () => {
   expect(() => {
     tokenizer(json)}
   ).toThrow('There is a failed match for type (true)')
+})
+
+test('Tokenizer should throw for number with letters in the middle', () => {
+  const json = `{"win":12f3e33,"ok":true}`
+  expect(() => {
+    tokenizer(json)}
+  ).toThrow('This value (12f3e33) is not a valid number')
+})
+
+test('Tokenizer should throw for number with letters at the end', () => {
+  const json = `{"win":123e33f,"ok":true}`
+  expect(() => {
+    tokenizer(json)}
+  ).toThrow('This value (123e33f) is not a valid number')
 })
 
 test('Tokenizer should throw for a space in false', () => {
