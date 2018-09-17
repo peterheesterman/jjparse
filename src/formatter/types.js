@@ -2,7 +2,8 @@
 
 type Configuration = {|
   tabs?: boolean,
-  spaces?: number
+  spaces?: number,
+  compress?: boolean
 |}
 
 export type {

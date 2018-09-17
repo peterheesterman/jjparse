@@ -7,8 +7,13 @@ const writeObject = (write:(x: string) => string, node: TreeNode_object, indent:
   write('{')
   node.object.forEach(keyVal => {
     const newDepth = depth + 1
-    indent(newDepth)
-    write(keyVal.key.token.value + ': ')
+    
+    let seperator = ': '
+    if (indent(newDepth).indexOf('\n') === -1) {
+      // Hack - we are in compress mode
+      seperator = ':'
+    }
+    write(keyVal.key.token.value + seperator)
 
     switch (keyVal.value.type) {
       case 'object':
