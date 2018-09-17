@@ -112,7 +112,28 @@ test('Tokenizer should throw for spam in true', () => {
   ).toThrow('There is a failed match for type (true)')
 })
 
-test('Tokenizer should throw for number with letters in the middle', () => {
+test('Tokenizer should throw when there is an extra l on null', () => {
+  const json = `{"win":123e33,"ok":nulll}`
+  expect(() => {
+    tokenizer(json)}
+  ).toThrow('Char (l) does not start know token - fail!')
+})
+
+test('Tokenizer should throw when there is an extra e on false', () => {
+  const json = `{"win":123e33,"ok":falsee}`
+  expect(() => {
+    tokenizer(json)}
+  ).toThrow('Char (e) does not start know token - fail!')
+})
+
+test('Tokenizer should throw when there is an extra e on true', () => {
+  const json = `{"win":123e33,"ok":truee}`
+  expect(() => {
+    tokenizer(json)}
+  ).toThrow('Char (e) does not start know token - fail!')
+})
+
+test('Tokenizer should throw when some value is not a valid number', () => {
   const json = `{"win":12f3e33,"ok":true}`
   expect(() => {
     tokenizer(json)}
