@@ -21,3 +21,5 @@ General:
 Weak design:
   - If there is an error in the input, finding where that is, is nearly
   impossible from the error output.
+
+Going to put this down and start on the rust implementation of a similar thing
