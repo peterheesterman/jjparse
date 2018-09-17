@@ -4,7 +4,7 @@
   "description": "Javascript JSON Parser",
   "main": "index.js",
   "scripts": {
-    "count:lines": "cd src/ && find . -name '*.js' | xargs wc -l | grep total && cd ..",
+    "count:lines": "find ./src -type f \\( -iname '*.js' ! -iname '*.spec.js' \\) | xargs wc -l | grep total",
     "start": "rm -r dist &&npm run build && node dist/index.js testJSON/correct.json.in testJSON/correct.json.out",
     "test": "rm -r dist && npm run build && jest dist",
     "build": "./node_modules/.bin/flow-remove-types src/ -d dist/",
