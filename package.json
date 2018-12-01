@@ -24,12 +24,12 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/peterheesterman/jjparse#readme",
   "devDependencies": {
-    "flow-bin": "^0.80.0",
+    "flow-bin": "^0.87.0",
     "flow-remove-types": "^1.2.3",
-    "jest": "^23.5.0"
+    "jest": "^23.6.0"
   },
   "dependencies": {
     "flow-typed": "^2.5.1",
-    "ramda": "^0.25.0"
+    "ramda": "^0.26.1"
   }
 }
