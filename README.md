@@ -3,7 +3,7 @@
 Javascript JSON Parser
 
   - Simple to read
-  - Get better over time
+  - Getting better over time
   - Benchmark against rust version when i write that
 
 Parsing will include tokenizing and analyzing. The resulting Abstract Syntax
@@ -13,6 +13,10 @@ Tree (AST) will be used to produce formatted json.
   - There is a line counter that we can use to understand how the repo is changing,
   we want to get this count as low as possible with it still being easy to read, it
   now excludes test which we want to grow in size over time.
+
+| Date  | # Lines | Delta |
+|-------|---------|-------|
+| 2 Dec | 768     | -     |
 
 ## Outstanding issues:
 General:
