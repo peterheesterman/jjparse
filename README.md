@@ -7,7 +7,7 @@ Javascript JSON Parser
   - Benchmark against rust version when i write that
 
 Parsing will include tokenizing and analyzing. The resulting Abstract Syntax
-Tree (AST) will be used to format json.
+Tree (AST) will be used to produce formatted json.
 
 ## Tips and tricks
   - There is a line counter that we can use to understand how the repo is changing,
@@ -20,6 +20,6 @@ General:
 
 Weak design:
   - If there is an error in the input, finding where that is, is nearly
-  impossible from the error output.
+  impossible from the error thrown.
 
 Going to put this down and start on the rust implementation of a similar thing
